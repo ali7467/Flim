@@ -695,7 +695,80 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+<div class="video-container">
+
+    <video
+        id="moviePlayer"
+        controls
+        playsinline
+        preload="metadata"
+    >
+        <source
+            id="movieSource"
+            src=""
+            type="video/mp4"
+        >
+
+        Tarayıcınız video oynatmayı desteklemiyor.
+    </video>
+<script>
+
+const savedMovie =
+    localStorage.getItem(
+        "filmkeyfi_selected_movie"
+    );
+
+if (savedMovie) {
+
+    const movie =
+        JSON.parse(savedMovie);
+
+    const player =
+        document.getElementById(
+            "moviePlayer"
+        );
+
+    const source =
+        document.getElementById(
+            "movieSource"
+        );
+
+    if (movie.video) {
+
+        source.src =
+            movie.video;
+
+        player.load();
+
+    }
+
+}
+    <!-- Video -->
+
+    <div class="video-container">
+        <video
+            id="moviePlayer"
+            controls
+            playsinline
+            preload="metadata"
+        >
+            <source
+                id="movieSource"
+                src=""
+                type="video/mp4"
+            >
+        </video>
+    </div>
+
+
+    <script>
+        // JavaScript burada
+    </script>
+
+</body>
+</html>
 </script>
+</div>
 </body>
 
 </html>
