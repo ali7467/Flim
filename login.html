@@ -2,25 +2,15 @@
 <html lang="tr">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="theme-color"
-        content="#050505"
-    >
+    <meta name="theme-color"
+          content="#050505">
 
-    <title>Admin Girişi | FilmKeyfi</title>
-
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
+    <title>FilmKeyfi Admin</title>
 
     <style>
 
@@ -30,12 +20,22 @@
 
         body {
             margin: 0;
-            background: #030303;
-            color: #fff;
+            min-height: 100vh;
+
             font-family: Arial, sans-serif;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255,0,60,.18),
+                    transparent 45%
+                ),
+                #030303;
         }
 
-        .admin-login {
+        .page {
             min-height: 100vh;
 
             display: flex;
@@ -43,39 +43,24 @@
             justify-content: center;
 
             padding: 20px;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    rgba(255, 0, 60, .14),
-                    transparent 42%
-                ),
-                #030303;
         }
 
-        .login-card {
+        .box {
             width: 100%;
-            max-width: 400px;
+            max-width: 390px;
 
-            padding: 32px 25px;
+            padding: 30px 25px;
 
-            background:
-                linear-gradient(
-                    145deg,
-                    #141414,
-                    #080808
-                );
+            background: #101010;
 
             border: 1px solid
-                rgba(255, 0, 60, .35);
+                rgba(255,0,60,.35);
 
             border-radius: 16px;
 
             box-shadow:
-                0 0 35px
-                rgba(255, 0, 60, .15),
-                0 25px 70px
-                rgba(0, 0, 0, .8);
+                0 0 40px
+                rgba(255,0,60,.18);
         }
 
         .logo {
@@ -86,23 +71,19 @@
         .logo h1 {
             margin: 0;
 
-            font-size: 32px;
+            font-size: 31px;
+
             font-weight: 900;
-            letter-spacing: 2px;
         }
 
-        .logo h1 span {
+        .logo span {
             color: #ff003c;
 
             text-shadow:
-                0 0 8px #ff003c,
-                0 0 20px
-                rgba(255, 0, 60, .5);
+                0 0 12px #ff003c;
         }
 
         .logo p {
-            margin-top: 8px;
-
             color: #777;
 
             font-size: 11px;
@@ -110,36 +91,7 @@
             letter-spacing: 3px;
         }
 
-        .security-badge {
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            gap: 8px;
-
-            margin-bottom: 25px;
-
-            padding: 10px;
-
-            color: #ff5575;
-
-            background:
-                rgba(255, 0, 60, .06);
-
-            border: 1px solid
-                rgba(255, 0, 60, .15);
-
-            border-radius: 8px;
-
-            font-size: 11px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group label {
+        label {
             display: block;
 
             margin-bottom: 8px;
@@ -151,97 +103,68 @@
             font-weight: bold;
         }
 
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-icon {
-            position: absolute;
-
-            left: 14px;
-            top: 50%;
-
-            transform:
-                translateY(-50%);
-
-            color: #666;
-        }
-
-        .form-group input {
+        input {
             width: 100%;
+
             height: 50px;
 
-            padding:
-                0 14px 0 42px;
+            margin-bottom: 18px;
 
-            color: #fff;
+            padding: 0 14px;
 
-            background: #060606;
+            color: white;
 
-            border: 1px solid
-                rgba(255,255,255,.1);
+            background: #050505;
+
+            border: 1px solid #292929;
 
             border-radius: 8px;
 
             outline: none;
 
             font-size: 14px;
-
-            transition: .25s;
         }
 
-        .form-group input:focus {
+        input:focus {
             border-color: #ff003c;
 
             box-shadow:
                 0 0 15px
-                rgba(255,0,60,.15);
+                rgba(255,0,60,.2);
         }
 
-        .login-button {
+        button {
             width: 100%;
+
             height: 50px;
 
-            margin-top: 8px;
-
             border: 0;
+
             border-radius: 8px;
 
             background: #ff003c;
 
-            color: #fff;
+            color: white;
 
-            font-size: 14px;
             font-weight: bold;
 
             cursor: pointer;
 
             box-shadow:
-                0 0 18px
+                0 0 20px
                 rgba(255,0,60,.35);
-
-            transition: .25s;
         }
 
-        .login-button:hover {
+        button:hover {
             background: #ff174f;
-
-            box-shadow:
-                0 0 30px
-                rgba(255,0,60,.65);
         }
 
-        .login-button:disabled {
-            opacity: .6;
-            cursor: wait;
-        }
-
-        #loginMessage {
-            display: none;
-
+        #message {
             margin-top: 15px;
 
             padding: 12px;
+
+            display: none;
 
             border-radius: 8px;
 
@@ -250,8 +173,8 @@
             font-size: 12px;
         }
 
-        #loginMessage.error {
-            display: block;
+        .error {
+            display: block !important;
 
             color: #ff6b86;
 
@@ -262,22 +185,22 @@
                 rgba(255,0,60,.2);
         }
 
-        #loginMessage.success {
-            display: block;
+        .success {
+            display: block !important;
 
-            color: #55df91;
+            color: #5cff9a;
 
             background:
-                rgba(0,200,100,.07);
+                rgba(0,200,100,.08);
 
             border: 1px solid
                 rgba(0,200,100,.2);
         }
 
-        .back-home {
+        .back {
             display: block;
 
-            margin-top: 22px;
+            margin-top: 20px;
 
             color: #666;
 
@@ -288,20 +211,6 @@
             font-size: 12px;
         }
 
-        .back-home:hover {
-            color: #ff003c;
-        }
-
-        .footer-note {
-            margin-top: 25px;
-
-            color: #444;
-
-            text-align: center;
-
-            font-size: 10px;
-        }
-
     </style>
 
 </head>
@@ -309,177 +218,84 @@
 
 <body>
 
+<div class="page">
 
-    <main class="admin-login">
+    <div class="box">
 
-        <section class="login-card">
+        <div class="logo">
 
+            <h1>
+                <span>FILM</span>KEYFİ
+            </h1>
 
-            <div class="logo">
+            <p>
+                ADMIN PANEL
+            </p>
 
-                <h1>
-                    <span>FILM</span>KEYFİ
-                </h1>
-
-                <p>
-                    ADMIN PANEL
-                </p>
-
-            </div>
+        </div>
 
 
-            <div class="security-badge">
+        <form id="loginForm">
 
-                🔐
+            <label for="email">
+                Admin E-posta
+            </label>
 
-                <span>
-                    Güvenli yönetici girişi
-                </span>
-
-            </div>
-
-
-            <form id="adminLoginForm">
-
-
-                <!-- E-POSTA -->
-
-                <div class="form-group">
-
-                    <label for="email">
-                        Admin E-posta
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <span class="input-icon">
-                            ✉
-                        </span>
-
-                        <input
-                            type="email"
-                            id="email"
-                            value="alitor741001@gmail.com"
-                            autocomplete="username"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- ŞİFRE -->
-
-                <div class="form-group">
-
-                    <label for="password">
-                        Şifre
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <span class="input-icon">
-                            🔑
-                        </span>
-
-                        <input
-                            type="password"
-                            id="password"
-                            autocomplete="current-password"
-                            placeholder="Şifrenizi girin"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="login-button"
-                    id="loginButton"
-                >
-                    Giriş Yap
-                </button>
-
-
-                <div
-                    id="loginMessage"
-                ></div>
-
-
-            </form>
-
-
-            <a
-                href="index.html"
-                class="back-home"
+            <input
+                type="email"
+                id="email"
+                value="alitor741001@gmail.com"
+                required
             >
-                ← Ana sayfaya dön
-            </a>
 
 
-            <div class="footer-note">
-                FilmKeyfi Yönetim Sistemi
-            </div>
+            <label for="password">
+                Şifre
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Şifrenizi girin"
+                required
+            >
 
 
-        </section>
-
-    </main>
-
-
-    <script>
-
-        const form =
-            document.getElementById(
-                "adminLoginForm"
-            );
-
-        const message =
-            document.getElementById(
-                "loginMessage"
-            );
-
-        const button =
-            document.getElementById(
-                "loginButton"
-            );
+            <button type="submit">
+                Giriş Yap
+            </button>
 
 
-        form.addEventListener(
-            "submit",
-            function(event) {
+            <div id="message"></div>
 
-                event.preventDefault();
+        </form>
 
 
-                message.className =
-                    "error";
+        <a
+            class="back"
+            href="index.html"
+        >
+            ← Ana sayfaya dön
+        </a>
 
-                message.textContent =
-                    "Güvenli admin doğrulaması henüz backend'e bağlanmadı.";
+    </div>
 
-            }
-        );
+</div>
 
-   <script>
+
+<script>
 
 const form =
-    document.getElementById("adminLoginForm");
+    document.getElementById("loginForm");
 
 const message =
-    document.getElementById("loginMessage");
-
-const button =
-    document.getElementById("loginButton");
+    document.getElementById("message");
 
 
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", function(e) {
 
-    event.preventDefault();
+    e.preventDefault();
+
 
     const email =
         document.getElementById("email").value.trim();
@@ -504,42 +320,20 @@ form.addEventListener("submit", function(event) {
         message.className = "error";
 
         message.textContent =
-            "Lütfen şifrenizi girin.";
+            "Şifre girmeniz gerekiyor.";
 
         return;
     }
 
 
-    /*
-       Gerçek şifre kontrolü Cloudflare Worker
-       bağlandıktan sonra burada yapılacak.
-    */
-
-    button.disabled = true;
-
-    button.textContent =
-        "Kontrol ediliyor...";
-
-
     message.className = "success";
 
     message.textContent =
-        "E-posta doğrulandı. Güvenli sunucu bağlantısı bekleniyor.";
-
-
-    setTimeout(function() {
-
-        button.disabled = false;
-
-        button.textContent =
-            "Giriş Yap";
-
-    }, 1500);
+        "E-posta doğrulandı. Giriş sistemi hazırlanıyor.";
 
 });
 
 </script>
-
 
 </body>
 
