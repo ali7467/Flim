@@ -375,6 +375,93 @@
 
 
     <script src="js/app.js"></script>
+<script>
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    const container =
+        document.getElementById("featuredMovies");
+
+    if (!container) return;
+
+
+    const movies =
+        JSON.parse(
+            localStorage.getItem(
+                "filmkeyfi_movies"
+            ) || "[]"
+        );
+
+
+    if (movies.length === 0) {
+        return;
+    }
+
+
+    movies.forEach(function(movie) {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            "movie-card";
+
+
+        card.innerHTML = `
+
+            <div
+                class="poster"
+                style="
+                    background-image:
+                    url('${movie.poster}');
+                    background-size: cover;
+                    background-position: center;
+                "
+            ></div>
+
+            <div class="movie-card-info">
+
+                <span class="quality">
+                    HD
+                </span>
+
+                <h3>
+                    ${movie.title}
+                </h3>
+
+                <p>
+                    ${movie.year || "----"}
+                    ·
+                    ${movie.runtime || "--"} dk
+                </p>
+
+            </div>
+
+        `;
+
+
+        card.addEventListener(
+            "click",
+            function() {
+
+                localStorage.setItem(
+                    "filmkeyfi_selected_movie",
+                    JSON.stringify(movie)
+                );
+
+                window.location.href =
+                    "movie.html";
+
+            }
+        );
+
+
+        container.prepend(card);
+
+    });
+
+});
+
+</script>
 </body>
 </html>
