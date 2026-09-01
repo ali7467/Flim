@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta name="theme-color" content="#08080d">
+
+    <title>Üye Ol - FilmKeyfi</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+
+</head>
+
+<body class="auth-page">
+
+
+    <a href="index.html" class="auth-logo">
+        <span>FILM</span>KEYFİ
+    </a>
+
+
+    <main class="auth-container">
+
+        <div class="auth-card register-card">
+
+            <div class="auth-icon">
+                ✨
+            </div>
+
+            <h1>Hesap Oluştur</h1>
+
+            <p class="auth-subtitle">
+                FilmKeyfi dünyasına katıl
+            </p>
+
+
+            <form id="registerForm">
+
+
+                <div class="input-group">
+
+                    <label for="registerName">
+                        Kullanıcı adı
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        placeholder="Kullanıcı adınız"
+                        autocomplete="username"
+                        minlength="3"
+                        maxlength="30"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="registerEmail">
+                        E-posta
+                    </label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="ornek@email.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="registerPassword">
+                        Şifre
+                    </label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            placeholder="En az 8 karakter"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            data-target="registerPassword"
+                        >
+                            ◉
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="registerPasswordAgain">
+                        Şifre tekrar
+                    </label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="registerPasswordAgain"
+                            placeholder="Şifrenizi tekrar girin"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            data-target="registerPasswordAgain"
+                        >
+                            ◉
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="acceptTerms"
+                        required
+                    >
+
+                    <span>
+                        Kullanım koşullarını ve gizlilik
+                        politikasını kabul ediyorum.
+                    </span>
+
+                </label>
+
+
+                <button
+                    type="submit"
+                    class="auth-submit"
+                    id="registerButton"
+                >
+                    Hesap Oluştur
+                </button>
+
+
+                <div
+                    class="auth-message"
+                    id="registerMessage"
+                ></div>
+
+            </form>
+
+
+            <p class="auth-bottom">
+
+                Zaten hesabın var mı?
+
+                <a href="login.html">
+                    Giriş yap
+                </a>
+
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/auth.js"></script>
+
+</body>
+</html>
