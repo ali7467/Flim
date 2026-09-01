@@ -465,7 +465,80 @@
             }
         );
 
-    </script>
+   <script>
+
+const form =
+    document.getElementById("adminLoginForm");
+
+const message =
+    document.getElementById("loginMessage");
+
+const button =
+    document.getElementById("loginButton");
+
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+
+    if (email !== "alitor741001@gmail.com") {
+
+        message.className = "error";
+
+        message.textContent =
+            "E-posta adresi hatalı.";
+
+        return;
+    }
+
+
+    if (!password) {
+
+        message.className = "error";
+
+        message.textContent =
+            "Lütfen şifrenizi girin.";
+
+        return;
+    }
+
+
+    /*
+       Gerçek şifre kontrolü Cloudflare Worker
+       bağlandıktan sonra burada yapılacak.
+    */
+
+    button.disabled = true;
+
+    button.textContent =
+        "Kontrol ediliyor...";
+
+
+    message.className = "success";
+
+    message.textContent =
+        "E-posta doğrulandı. Güvenli sunucu bağlantısı bekleniyor.";
+
+
+    setTimeout(function() {
+
+        button.disabled = false;
+
+        button.textContent =
+            "Giriş Yap";
+
+    }, 1500);
+
+});
+
+</script>
 
 
 </body>
