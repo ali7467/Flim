@@ -1,301 +1,163 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="theme-color"
-          content="#050505">
-
-    <title>FilmKeyfi Admin</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-
-            font-family: Arial, sans-serif;
-
-            color: white;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    rgba(255,0,60,.18),
-                    transparent 45%
-                ),
-                #030303;
-        }
-
-        .page {
-            min-height: 100vh;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            padding: 20px;
-        }
-
-        .box {
-            width: 100%;
-            max-width: 390px;
-
-            padding: 30px 25px;
-
-            background: #101010;
-
-            border: 1px solid
-                rgba(255,0,60,.35);
-
-            border-radius: 16px;
-
-            box-shadow:
-                0 0 40px
-                rgba(255,0,60,.18);
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .logo h1 {
-            margin: 0;
-
-            font-size: 31px;
-
-            font-weight: 900;
-        }
-
-        .logo span {
-            color: #ff003c;
-
-            text-shadow:
-                0 0 12px #ff003c;
-        }
-
-        .logo p {
-            color: #777;
-
-            font-size: 11px;
-
-            letter-spacing: 3px;
-        }
-
-        label {
-            display: block;
-
-            margin-bottom: 8px;
-
-            color: #aaa;
-
-            font-size: 12px;
-
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-
-            height: 50px;
-
-            margin-bottom: 18px;
-
-            padding: 0 14px;
-
-            color: white;
-
-            background: #050505;
-
-            border: 1px solid #292929;
-
-            border-radius: 8px;
-
-            outline: none;
-
-            font-size: 14px;
-        }
-
-        input:focus {
-            border-color: #ff003c;
-
-            box-shadow:
-                0 0 15px
-                rgba(255,0,60,.2);
-        }
-
-        button {
-            width: 100%;
-
-            height: 50px;
-
-            border: 0;
-
-            border-radius: 8px;
-
-            background: #ff003c;
-
-            color: white;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 0 20px
-                rgba(255,0,60,.35);
-        }
-
-        button:hover {
-            background: #ff174f;
-        }
-
-        #message {
-            margin-top: 15px;
-
-            padding: 12px;
-
-            display: none;
-
-            border-radius: 8px;
-
-            text-align: center;
-
-            font-size: 12px;
-        }
-
-        .error {
-            display: block !important;
-
-            color: #ff6b86;
-
-            background:
-                rgba(255,0,60,.08);
-
-            border: 1px solid
-                rgba(255,0,60,.2);
-        }
-
-        .success {
-            display: block !important;
-
-            color: #5cff9a;
-
-            background:
-                rgba(0,200,100,.08);
-
-            border: 1px solid
-                rgba(0,200,100,.2);
-        }
-
-        .back {
-            display: block;
-
-            margin-top: 20px;
-
-            color: #666;
-
-            text-align: center;
-
-            text-decoration: none;
-
-            font-size: 12px;
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FilmKeyfi Admin Giriş</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+    background:
+        radial-gradient(circle, rgba(255,0,60,.18), transparent 45%),
+        #030303;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box {
+    width: 90%;
+    max-width: 390px;
+    padding: 30px 25px;
+    background: #101010;
+    border: 1px solid rgba(255,0,60,.4);
+    border-radius: 16px;
+    box-shadow: 0 0 40px rgba(255,0,60,.2);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.logo span {
+    color: #ff003c;
+    text-shadow: 0 0 15px #ff003c;
+}
+
+.logo p {
+    color: #777;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    color: #aaa;
+    font-size: 12px;
+}
+
+input {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 18px;
+    padding: 0 14px;
+    background: #050505;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 8px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #ff003c;
+    box-shadow: 0 0 15px rgba(255,0,60,.25);
+}
+
+button {
+    width: 100%;
+    height: 50px;
+    border: 0;
+    border-radius: 8px;
+    background: #ff003c;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255,0,60,.4);
+}
+
+#message {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.back {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #777;
+    text-decoration: none;
+    font-size: 12px;
+}
+</style>
 </head>
-
 
 <body>
 
-<div class="page">
+<div class="login-box">
 
-    <div class="box">
-
-        <div class="logo">
-
-            <h1>
-                <span>FILM</span>KEYFİ
-            </h1>
-
-            <p>
-                ADMIN PANEL
-            </p>
-
-        </div>
-
-
-        <form id="loginForm">
-
-            <label for="email">
-                Admin E-posta
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                value="alitor741001@gmail.com"
-                required
-            >
-
-
-            <label for="password">
-                Şifre
-            </label>
-
-            <input
-                type="password"
-                id="password"
-                placeholder="Şifrenizi girin"
-                required
-            >
-
-
-            <button type="submit">
-                Giriş Yap
-            </button>
-
-
-            <div id="message"></div>
-
-        </form>
-
-
-        <a
-            class="back"
-            href="index.html"
-        >
-            ← Ana sayfaya dön
-        </a>
-
+    <div class="logo">
+        <h1><span>FILM</span>KEYFİ</h1>
+        <p>ADMIN PANEL</p>
     </div>
+
+    <form id="loginForm">
+
+        <label>E-posta</label>
+
+        <input
+            type="email"
+            id="email"
+            value="alitor741001@gmail.com"
+            required
+        >
+
+        <label>Şifre</label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Şifrenizi girin"
+            required
+        >
+
+        <button type="submit">
+            GİRİŞ YAP
+        </button>
+
+        <div id="message"></div>
+
+    </form>
+
+    <a href="index.html" class="back">
+        ← Ana Sayfaya Dön
+    </a>
 
 </div>
 
-
 <script>
 
-const form =
-    document.getElementById("loginForm");
+document
+.getElementById("loginForm")
+.addEventListener("submit", function(event) {
 
-const message =
-    document.getElementById("message");
-
-
-form.addEventListener("submit", function(e) {
-
-    e.preventDefault();
-
+    event.preventDefault();
 
     const email =
         document.getElementById("email").value.trim();
@@ -303,61 +165,9 @@ form.addEventListener("submit", function(e) {
     const password =
         document.getElementById("password").value;
 
+    const message =
+        document.getElementById("message");
 
-    if (email !== "alitor741001@gmail.com") {
-
-        message.className = "error";
-
-        message.textContent =
-            "E-posta adresi hatalı.";
-
-        return;
-    }
-
-
-    if (!password) {
-
-        message.className = "error";
-
-        message.textContent =
-            "Şifre girmeniz gerekiyor.";
-
-        return;
-    }
-
-
-    message.className = "success";
-
-    message.textContent =
-        "E-posta doğrulandı. Giriş sistemi hazırlanıyor.";
-
-});
-
-</script><script>
-
-const form = document.getElementById("loginForm");
-const message = document.getElementById("message");
-
-form.addEventListener("submit", function(e) {
-
-    e.preventDefault();
-
-    const email =
-        document.getElementById("email").value.trim();
-
-    const password =
-        document.getElementById("password").value;
-
-
-    /*
-      GEÇİCİ TEST GİRİŞİ
-
-      E-posta:
-      alitor741001@gmail.com
-
-      Şifre:
-      Alt7474
-    */
 
     if (
         email === "alitor741001@gmail.com" &&
@@ -369,11 +179,10 @@ form.addEventListener("submit", function(e) {
             "true"
         );
 
-        message.className = "success";
+        message.style.color = "#55ff99";
 
         message.textContent =
-            "Giriş başarılı. Admin paneli açılıyor...";
-
+            "Giriş başarılı!";
 
         setTimeout(function() {
 
@@ -382,10 +191,9 @@ form.addEventListener("submit", function(e) {
 
         }, 500);
 
-
     } else {
 
-        message.className = "error";
+        message.style.color = "#ff5575";
 
         message.textContent =
             "E-posta veya şifre hatalı.";
@@ -397,5 +205,4 @@ form.addEventListener("submit", function(e) {
 </script>
 
 </body>
-
 </html>
