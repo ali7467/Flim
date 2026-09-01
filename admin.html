@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#050505"
+    >
+
+    <title>Admin Paneli - FilmKeyfi</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =========================================
+           ADMIN PANEL
+        ========================================= */
+
+        .admin-page {
+            min-height: 100vh;
+
+            padding:
+                35px 5%
+                110px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(255,0,60,.13),
+                    transparent 35%
+                ),
+                #050505;
+        }
+
+
+        .admin-container {
+            max-width: 900px;
+
+            margin: auto;
+        }
+
+
+        /* BAŞLIK */
+
+        .admin-header {
+            margin-bottom: 30px;
+        }
+
+        .admin-header h1 {
+            font-size: 36px;
+
+            font-weight: 900;
+
+            margin-bottom: 8px;
+        }
+
+        .admin-header h1 span {
+            color: #ff003c;
+
+            text-shadow:
+                0 0 10px
+                rgba(255,0,60,.7);
+        }
+
+        .admin-header p {
+            color: #777;
+
+            font-size: 14px;
+        }
+
+
+        /* PANEL */
+
+        .admin-panel {
+            background:
+                linear-gradient(
+                    145deg,
+                    #111113,
+                    #090909
+                );
+
+            border:
+                1px solid
+                rgba(255,0,60,.18);
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 20px 60px
+                rgba(0,0,0,.5);
+        }
+
+
+        /* FORM */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+        }
+
+
+        .form-group {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+
+        .form-group.full {
+            grid-column:
+                1 / -1;
+        }
+
+
+        .form-group label {
+            color: #aaa;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+
+            width: 100%;
+
+            background: #080808;
+
+            color: white;
+
+            border:
+                1px solid
+                rgba(255,255,255,.1);
+
+            border-radius: 7px;
+
+            outline: none;
+
+            padding: 13px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            transition: .25s;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+
+            border-color:
+                #ff003c;
+
+            box-shadow:
+                0 0 15px
+                rgba(255,0,60,.12);
+
+        }
+
+
+        .form-group textarea {
+
+            min-height: 130px;
+
+            resize: vertical;
+
+        }
+
+
+        .form-help {
+
+            color: #555;
+
+            font-size: 11px;
+
+        }
+
+
+        /* KAYDET */
+
+        .admin-actions {
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.06);
+
+        }
+
+
+        .admin-button {
+
+            min-height: 45px;
+
+            padding:
+                0 20px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            font-size: 13px;
+
+            transition: .25s;
+
+        }
+
+
+        .cancel-button {
+
+            background: #111;
+
+            color: #aaa;
+
+            border:
+                1px solid
+                rgba(255,255,255,.1);
+
+        }
+
+
+        .cancel-button:hover {
+
+            color: white;
+
+            border-color: #555;
+
+        }
+
+
+        .save-button {
+
+            background: #ff003c;
+
+            color: white;
+
+            border:
+                1px solid
+                #ff003c;
+
+            box-shadow:
+                0 0 15px
+                rgba(255,0,60,.3);
+
+        }
+
+
+        .save-button:hover {
+
+            background: #ff174f;
+
+            box-shadow:
+                0 0 25px
+                rgba(255,0,60,.6);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* DURUM */
+
+        #adminMessage {
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border-radius: 7px;
+
+            display: none;
+
+            font-size: 13px;
+
+        }
+
+
+        #adminMessage.success {
+
+            display: block;
+
+            background:
+                rgba(0,180,80,.08);
+
+            border:
+                1px solid
+                rgba(0,180,80,.25);
+
+            color: #52d98a;
+
+        }
+
+
+        #adminMessage.error {
+
+            display: block;
+
+            background:
+                rgba(255,0,60,.08);
+
+            border:
+                1px solid
+                rgba(255,0,60,.25);
+
+            color: #ff5575;
+
+        }
+
+
+        /* MOBİL */
+
+        @media (max-width: 650px) {
+
+            .admin-page {
+
+                padding:
+                    25px 15px
+                    100px;
+
+            }
+
+
+            .admin-header h1 {
+
+                font-size: 29px;
+
+            }
+
+
+            .admin-panel {
+
+                padding: 18px;
+
+            }
+
+
+            .form-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .form-group.full {
+
+                grid-column:
+                    auto;
+
+            }
+
+
+            .admin-actions {
+
+                flex-direction:
+                    column-reverse;
+
+            }
+
+
+            .admin-button {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
+    <header class="header">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            <span>FILM</span>KEYFİ
+        </a>
+
+
+        <div class="header-actions">
+
+            <a
+                href="index.html"
+                class="header-button"
+            >
+                ⌂
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         ADMIN
+    ========================================= -->
+
+    <main class="admin-page">
+
+        <div class="admin-container">
+
+
+            <div class="admin-header">
+
+                <h1>
+                    <span>Admin</span> Paneli
+                </h1>
+
+                <p>
+                    Film bilgilerini ve video URL'sini
+                    buradan yönetebilirsin.
+                </p>
+
+            </div>
+
+
+            <section class="admin-panel">
+
+
+                <form
+                    id="movieForm"
+                >
+
+
+                    <div class="form-grid">
+
+
+                        <!-- FİLM ADI -->
+
+                        <div class="form-group full">
+
+                            <label>
+                                Film Adı
+                            </label>
+
+                            <input
+                                type="text"
+                                id="movieName"
+                                placeholder="Örn: Şeytanın Ağzı"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- POSTER -->
+
+                        <div class="form-group full">
+
+                            <label>
+                                Poster URL
+                            </label>
+
+                            <input
+                                type="url"
+                                id="posterUrl"
+                                placeholder="https://site.com/poster.jpg"
+                                required
+                            >
+
+                            <small class="form-help">
+                                Doğrudan görsel adresi (.jpg, .png, .webp)
+                            </small>
+
+                        </div>
+
+
+                        <!-- VİDEO URL -->
+
+                        <div class="form-group full">
+
+                            <label>
+                                Video / İzleme URL
+                            </label>
+
+                            <input
+                                type="url"
+                                id="videoUrl"
+                                placeholder="https://site.com/video.mp4"
+                                required
+                            >
+
+                            <small class="form-help">
+                                Yalnızca kullanma hakkın olan veya izinli içeriklerin URL'sini kullan.
+                            </small>
+
+                        </div>
+
+
+                        <!-- YIL -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Yapım Yılı
+                            </label>
+
+                            <input
+                                type="number"
+                                id="movieYear"
+                                min="1900"
+                                max="2100"
+                                placeholder="2026"
+                            >
+
+                        </div>
+
+
+                        <!-- SÜRE -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Süre (Dakika)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="movieRuntime"
+                                min="1"
+                                placeholder="106"
+                            >
+
+                        </div>
+
+
+                        <!-- TÜR -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Tür
+                            </label>
+
+                            <select
+                                id="movieGenre"
+                            >
+
+                                <option value="Aksiyon">
+                                    Aksiyon
+                                </option>
+
+                                <option value="Korku">
+                                    Korku
+                                </option>
+
+                                <option value="Gerilim">
+                                    Gerilim
+                                </option>
+
+                                <option value="Bilim Kurgu">
+                                    Bilim Kurgu
+                                </option>
+
+                                <option value="Dram">
+                                    Dram
+                                </option>
+
+                                <option value="Komedi">
+                                    Komedi
+                                </option>
+
+                                <option value="Romantik">
+                                    Romantik
+                                </option>
+
+                                <option value="Macera">
+                                    Macera
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- PUAN -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Puan
+                            </label>
+
+                            <input
+                                type="number"
+                                id="movieRating"
+                                min="0"
+                                max="10"
+                                step="0.1"
+                                placeholder="8.5"
+                            >
+
+                        </div>
+
+
+                        <!-- AÇIKLAMA -->
+
+                        <div class="form-group full">
+
+                            <label>
+                                Açıklama
+                            </label>
+
+                            <textarea
+                                id="movieDescription"
+                                placeholder="Film açıklamasını yaz..."
+                            ></textarea>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- MESAJ -->
+
+                    <div
+                        id="adminMessage"
+                    ></div>
+
+
+                    <!-- BUTONLAR -->
+
+                    <div class="admin-actions">
+
+                        <button
+                            type="button"
+                            class="admin-button cancel-button"
+                            onclick="location.href='index.html'"
+                        >
+                            İptal
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="admin-button save-button"
+                        >
+                            ✓ Filmi Kaydet
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ALT MENÜ -->
+
+    <nav class="bottom-navigation">
+
+        <a href="index.html">
+
+            <span>⌂</span>
+
+            <small>
+                Ana Sayfa
+            </small>
+
+        </a>
+
+
+        <a href="movies.html">
+
+            <span>▣</span>
+
+            <small>
+                Filmler
+            </small>
+
+        </a>
+
+
+        <a href="packages.html">
+
+            <span>＋</span>
+
+            <small>
+                Premium
+            </small>
+
+        </a>
+
+
+        <a href="profile.html">
+
+            <span>♙</span>
+
+            <small>
+                Profil
+            </small>
+
+        </a>
+
+    </nav>
+
+
+    <script>
+
+        const movieForm =
+            document.getElementById(
+                "movieForm"
+            );
+
+
+        movieForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const message =
+                    document.getElementById(
+                        "adminMessage"
+                    );
+
+
+                message.className =
+                    "success";
+
+                message.textContent =
+                    "Film bilgileri hazırlandı. Backend bağlantısı sonraki adımda yapılacak.";
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>
