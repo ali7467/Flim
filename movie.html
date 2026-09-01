@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta name="theme-color" content="#050505">
+
+    <title>Film Detayı - FilmKeyfi</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* =========================================
+           FILM DETAY SAYFASI
+        ========================================= */
+
+        .movie-detail {
+            min-height: calc(100vh - 68px);
+
+            padding: 45px 6% 100px;
+
+            background:
+                radial-gradient(
+                    circle at 80% 10%,
+                    rgba(255, 0, 60, .15),
+                    transparent 35%
+                ),
+                #050505;
+        }
+
+        .back-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 30px;
+
+            padding: 10px 15px;
+
+            color: #aaa;
+
+            text-decoration: none;
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            border-radius: 7px;
+
+            background: rgba(255,255,255,.04);
+
+            transition: .25s;
+        }
+
+        .back-button:hover {
+            color: #ff003c;
+
+            border-color: #ff003c;
+
+            box-shadow:
+                0 0 10px rgba(255,0,60,.4);
+        }
+
+        .movie-detail-container {
+            display: grid;
+
+            grid-template-columns:
+                280px 1fr;
+
+            gap: 40px;
+
+            max-width: 1200px;
+
+            margin: auto;
+        }
+
+        .detail-poster {
+            width: 100%;
+
+            aspect-ratio: 2 / 3;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #300008,
+                    #050505
+                );
+
+            border: 1px solid
+                rgba(255,0,60,.3);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,.7),
+                0 0 25px rgba(255,0,60,.12);
+
+            background-size: cover;
+
+            background-position: center;
+        }
+
+        .detail-content h1 {
+            font-size: clamp(35px, 5vw, 58px);
+
+            margin-bottom: 8px;
+
+            font-weight: 900;
+        }
+
+        .original-title {
+            color: #ff003c;
+
+            font-size: 15px;
+
+            margin-bottom: 20px;
+
+            text-shadow:
+                0 0 10px rgba(255,0,60,.5);
+        }
+
+        .detail-meta {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+            margin-bottom: 25px;
+        }
+
+        .detail-meta span {
+            padding: 7px 10px;
+
+            color: #bbb;
+
+            background: #111;
+
+            border: 1px solid
+                rgba(255,255,255,.08);
+
+            border-radius: 6px;
+
+            font-size: 13px;
+        }
+
+        .detail-meta .rating {
+            color: #ff174f;
+
+            border-color:
+                rgba(255,0,60,.35);
+
+            box-shadow:
+                0 0 10px
+                rgba(255,0,60,.1);
+        }
+
+        .detail-description {
+            color: #aaa;
+
+            line-height: 1.8;
+
+            max-width: 700px;
+
+            font-size: 15px;
+
+            margin-bottom: 30px;
+        }
+
+        .detail-buttons {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-bottom: 35px;
+        }
+
+        .detail-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            min-height: 46px;
+
+            padding: 0 20px;
+
+            border-radius: 8px;
+
+            border: 1px solid
+                rgba(255,255,255,.12);
+
+            background: #111;
+
+            color: white;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: .25s;
+        }
+
+        .detail-button.primary {
+            background: #ff003c;
+
+            border-color: #ff003c;
+
+            box-shadow:
+                0 0 12px
+                rgba(255,0,60,.5);
+        }
+
+        .detail-button.primary:hover {
+            background: #ff174f;
+
+            box-shadow:
+                0 0 25px
+                rgba(255,0,60,.7);
+        }
+
+        .detail-button:not(.primary):hover {
+            color: #ff003c;
+
+            border-color: #ff003c;
+        }
+
+        .detail-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(120px, 1fr));
+
+            gap: 15px;
+
+            max-width: 700px;
+        }
+
+        .info-box {
+            padding: 15px;
+
+            background: #0d0d0f;
+
+            border: 1px solid
+                rgba(255,255,255,.06);
+
+            border-radius: 8px;
+        }
+
+        .info-box strong {
+            display: block;
+
+            color: #666;
+
+            font-size: 11px;
+
+            margin-bottom: 6px;
+
+            text-transform: uppercase;
+        }
+
+        .info-box span {
+            color: #ddd;
+
+            font-size: 14px;
+        }
+
+        /* =========================================
+           MOBİL
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .movie-detail {
+                padding:
+                    25px 16px 100px;
+            }
+
+            .movie-detail-container {
+                grid-template-columns: 1fr;
+
+                gap: 25px;
+            }
+
+            .detail-poster {
+                width: 190px;
+
+                margin: auto;
+            }
+
+            .detail-content {
+                text-align: center;
+            }
+
+            .detail-meta {
+                justify-content: center;
+            }
+
+            .detail-buttons {
+                justify-content: center;
+            }
+
+            .detail-info {
+                text-align: left;
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a href="index.html" class="logo">
+            <span>FILM</span>KEYFİ
+        </a>
+
+        <div class="header-actions">
+
+            <a
+                href="login.html"
+                class="header-button"
+            >
+                ◯
+            </a>
+
+            <button
+                class="header-button menu-button"
+                id="menuButton"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- MOBİL MENÜ -->
+
+    <div
+        class="mobile-menu"
+        id="mobileMenu"
+    >
+
+        <button
+            class="close-menu"
+            id="closeMenu"
+        >
+            ×
+        </button>
+
+        <a href="index.html">
+            Ana Sayfa
+        </a>
+
+        <a href="movies.html">
+            Filmler
+        </a>
+
+        <a href="packages.html">
+            Premium
+        </a>
+
+        <a href="login.html">
+            Giriş Yap
+        </a>
+
+        <a href="register.html">
+            Üye Ol
+        </a>
+
+    </div>
+
+
+    <!-- FİLM DETAY -->
+
+    <main class="movie-detail">
+
+        <a
+            href="index.html"
+            class="back-button"
+        >
+            ← Geri Dön
+        </a>
+
+
+        <div class="movie-detail-container">
+
+
+            <!-- POSTER -->
+
+            <div
+                class="detail-poster"
+                id="moviePoster"
+            ></div>
+
+
+            <!-- BİLGİLER -->
+
+            <div class="detail-content">
+
+                <h1 id="movieTitle">
+                    Film Yükleniyor...
+                </h1>
+
+                <div
+                    class="original-title"
+                    id="originalTitle"
+                >
+                    FilmKeyfi
+                </div>
+
+
+                <div
+                    class="detail-meta"
+                    id="movieMeta"
+                >
+
+                    <span>
+                        Yükleniyor
+                    </span>
+
+                </div>
+
+
+                <p
+                    class="detail-description"
+                    id="movieDescription"
+                >
+                    Film bilgileri yükleniyor...
+                </p>
+
+
+                <div class="detail-buttons">
+
+                    <a
+                        href="login.html"
+                        class="detail-button primary"
+                    >
+                        ▶ İzlemeye Başla
+                    </a>
+
+                    <button
+                        class="detail-button"
+                        id="detailWatchlist"
+                    >
+                        ＋ Listeme Ekle
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="detail-info"
+                    id="detailInfo"
+                >
+
+                    <div class="info-box">
+
+                        <strong>
+                            Yönetmen
+                        </strong>
+
+                        <span>
+                            —
+                        </span>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <strong>
+                            Yapım
+                        </strong>
+
+                        <span>
+                            —
+                        </span>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <strong>
+                            Dil
+                        </strong>
+
+                        <span>
+                            Türkçe
+                        </span>
+
+                    </div>
+
+                    <div class="info-box">
+
+                        <strong>
+                            Durum
+                        </strong>
+
+                        <span>
+                            Yayında
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ALT MENÜ -->
+
+    <nav class="bottom-navigation">
+
+        <a
+            href="index.html"
+            class="active"
+        >
+            <span>⌂</span>
+            <small>Ana Sayfa</small>
+        </a>
+
+        <a href="movies.html">
+            <span>▣</span>
+            <small>Filmler</small>
+        </a>
+
+        <a href="packages.html">
+            <span>＋</span>
+            <small>Premium</small>
+        </a>
+
+        <a href="profile.html">
+            <span>♙</span>
+            <small>Profil</small>
+        </a>
+
+    </nav>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
