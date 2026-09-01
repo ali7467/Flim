@@ -562,7 +562,140 @@
 
 
     <script src="js/app.js"></script>
+<script>
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    const savedMovie =
+        localStorage.getItem(
+            "filmkeyfi_selected_movie"
+        );
+
+    if (!savedMovie) {
+        return;
+    }
+
+    const movie =
+        JSON.parse(savedMovie);
+
+
+    /* Film adı */
+
+    const title =
+        document.getElementById(
+            "movieTitle"
+        );
+
+    if (title) {
+        title.textContent =
+            movie.title || "Film";
+    }
+
+
+    /* Poster */
+
+    const poster =
+        document.getElementById(
+            "moviePoster"
+        );
+
+    if (poster && movie.poster) {
+
+        poster.style.backgroundImage =
+            `url("${movie.poster}")`;
+
+    }
+
+
+    /* Açıklama */
+
+    const description =
+        document.getElementById(
+            "movieDescription"
+        );
+
+    if (description) {
+
+        description.textContent =
+            movie.description ||
+            "Bu film için açıklama bulunamadı.";
+
+    }
+
+
+    /* Orijinal başlık */
+
+    const originalTitle =
+        document.getElementById(
+            "originalTitle"
+        );
+
+    if (originalTitle) {
+
+        originalTitle.textContent =
+            movie.genre || "FilmKeyfi";
+
+    }
+
+
+    /* Bilgiler */
+
+    const meta =
+        document.getElementById(
+            "movieMeta"
+        );
+
+    if (meta) {
+
+        meta.innerHTML = `
+
+            <span>
+                ${movie.year || "----"}
+            </span>
+
+            <span class="rating">
+                ⭐ ${movie.rating || "-"}
+            </span>
+
+            <span>
+                ${movie.runtime || "--"} dk
+            </span>
+
+            <span>
+                ${movie.genre || "Diğer"}
+            </span>
+
+        `;
+
+    }
+
+
+    /* İzle butonu */
+
+    const watchButton =
+        document.querySelector(
+            ".detail-button.primary"
+        );
+
+    if (
+        watchButton &&
+        movie.video
+    ) {
+
+        watchButton.href =
+            movie.video;
+
+        watchButton.target =
+            "_blank";
+
+        watchButton.rel =
+            "noopener noreferrer";
+
+    }
+
+});
+
+</script>
 </body>
 
 </html>
