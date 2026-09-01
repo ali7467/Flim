@@ -797,3 +797,20 @@ button {
         padding-bottom: 72px;
     }
 }
+.video-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 25px auto;
+    padding: 0 15px;
+}
+
+.video-container video {
+    width: 100%;
+    display: block;
+    background: #000;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 0, 60, .35);
+    box-shadow:
+        0 0 30px
+        rgba(255, 0, 60, .18);
+}
