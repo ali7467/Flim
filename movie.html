@@ -764,7 +764,63 @@ if (savedMovie) {
     <script>
         // JavaScript burada
     </script>
+<div class="video-container">
 
+    <video
+        id="moviePlayer"
+        controls
+        playsinline
+        preload="metadata"
+    >
+
+        <source
+            id="movieSource"
+            src=""
+            type="video/mp4"
+        >
+
+        Tarayıcınız video oynatmayı desteklemiyor.
+
+    </video>
+
+</div>
+
+
+<script>
+
+const savedMovie =
+    localStorage.getItem(
+        "filmkeyfi_selected_movie"
+    );
+
+if (savedMovie) {
+
+    const movie =
+        JSON.parse(savedMovie);
+
+    const player =
+        document.getElementById(
+            "moviePlayer"
+        );
+
+    const source =
+        document.getElementById(
+            "movieSource"
+        );
+
+
+    if (movie.video) {
+
+        source.src =
+            movie.video;
+
+        player.load();
+
+    }
+
+}
+
+</script>
 </body>
 </html>
 </script>
