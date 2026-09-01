@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta name="theme-color" content="#050505">
+
+    <title>Admin Girişi - FilmKeyfi</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        body {
+            background: #050505;
+        }
+
+        .admin-login-page {
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 25px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 30%,
+                    rgba(255,0,60,.16),
+                    transparent 40%
+                ),
+                #050505;
+        }
+
+        .login-box {
+            width: 100%;
+
+            max-width: 390px;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #121214,
+                    #080808
+                );
+
+            border: 1px solid
+                rgba(255,0,60,.25);
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 0 40px
+                rgba(255,0,60,.12),
+                0 25px 70px
+                rgba(0,0,0,.7);
+        }
+
+        .admin-logo {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .admin-logo h1 {
+            margin: 0;
+
+            font-size: 32px;
+
+            font-weight: 900;
+        }
+
+        .admin-logo h1 span {
+            color: #ff003c;
+
+            text-shadow:
+                0 0 12px
+                rgba(255,0,60,.7);
+        }
+
+        .admin-logo p {
+            color: #666;
+
+            font-size: 12px;
+
+            margin-top: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #aaa;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+
+            height: 48px;
+
+            box-sizing: border-box;
+
+            padding: 0 14px;
+
+            background: #070707;
+
+            color: white;
+
+            border: 1px solid
+                rgba(255,255,255,.1);
+
+            border-radius: 7px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: .25s;
+        }
+
+        .form-group input:focus {
+            border-color: #ff003c;
+
+            box-shadow:
+                0 0 15px
+                rgba(255,0,60,.15);
+        }
+
+        .login-button {
+            width: 100%;
+
+            height: 48px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #ff003c;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 18px
+                rgba(255,0,60,.35);
+
+            transition: .25s;
+        }
+
+        .login-button:hover {
+            background: #ff174f;
+
+            box-shadow:
+                0 0 28px
+                rgba(255,0,60,.6);
+        }
+
+        .back-link {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #666;
+
+            font-size: 12px;
+
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #ff003c;
+        }
+
+        #loginMessage {
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 11px;
+
+            border-radius: 7px;
+
+            text-align: center;
+
+            font-size: 12px;
+        }
+
+        #loginMessage.error {
+            display: block;
+
+            color: #ff5575;
+
+            background:
+                rgba(255,0,60,.08);
+
+            border: 1px solid
+                rgba(255,0,60,.2);
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="admin-login-page">
+
+        <div class="login-box">
+
+
+            <div class="admin-logo">
+
+                <h1>
+                    <span>FILM</span>KEYFİ
+                </h1>
+
+                <p>
+                    YÖNETİCİ PANELİ
+                </p>
+
+            </div>
+
+
+            <form id="adminLoginForm">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Kullanıcı Adı
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        autocomplete="username"
+                        placeholder="Kullanıcı adınız"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Şifre
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        autocomplete="current-password"
+                        placeholder="Şifreniz"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Giriş Yap
+                </button>
+
+
+                <div
+                    id="loginMessage"
+                ></div>
+
+            </form>
+
+
+            <a
+                href="index.html"
+                class="back-link"
+            >
+                ← Ana sayfaya dön
+            </a>
+
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        const form =
+            document.getElementById(
+                "adminLoginForm"
+            );
+
+        const message =
+            document.getElementById(
+                "loginMessage"
+            );
+
+
+        form.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+                /*
+                    Burada henüz gerçek
+                    sunucu doğrulaması yok.
+
+                    Bir sonraki aşamada
+                    güvenli backend bağlantısı
+                    yapılacak.
+                */
+
+                message.className = "error";
+
+                message.textContent =
+                    "Admin doğrulama sistemi henüz bağlanmadı.";
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>
