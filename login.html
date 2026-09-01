@@ -333,6 +333,67 @@ form.addEventListener("submit", function(e) {
 
 });
 
+</script><script>
+
+const form = document.getElementById("loginForm");
+const message = document.getElementById("message");
+
+form.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+
+    /*
+      GEÇİCİ TEST GİRİŞİ
+
+      E-posta:
+      alitor741001@gmail.com
+
+      Şifre:
+      Alt7474
+    */
+
+    if (
+        email === "alitor741001@gmail.com" &&
+        password === "Alt7474"
+    ) {
+
+        sessionStorage.setItem(
+            "filmkeyfi_admin",
+            "true"
+        );
+
+        message.className = "success";
+
+        message.textContent =
+            "Giriş başarılı. Admin paneli açılıyor...";
+
+
+        setTimeout(function() {
+
+            window.location.href =
+                "admin.html";
+
+        }, 500);
+
+
+    } else {
+
+        message.className = "error";
+
+        message.textContent =
+            "E-posta veya şifre hatalı.";
+
+    }
+
+});
+
 </script>
 
 </body>
