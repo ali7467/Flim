@@ -1,157 +1,473 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#08080d">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Giriş Yap - FilmKeyfi</title>
+    <meta
+        name="theme-color"
+        content="#050505"
+    >
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/auth.css">
+    <title>Admin Girişi | FilmKeyfi</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #030303;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .admin-login {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255, 0, 60, .14),
+                    transparent 42%
+                ),
+                #030303;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+
+            padding: 32px 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #141414,
+                    #080808
+                );
+
+            border: 1px solid
+                rgba(255, 0, 60, .35);
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 0 35px
+                rgba(255, 0, 60, .15),
+                0 25px 70px
+                rgba(0, 0, 0, .8);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            margin: 0;
+
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo h1 span {
+            color: #ff003c;
+
+            text-shadow:
+                0 0 8px #ff003c,
+                0 0 20px
+                rgba(255, 0, 60, .5);
+        }
+
+        .logo p {
+            margin-top: 8px;
+
+            color: #777;
+
+            font-size: 11px;
+
+            letter-spacing: 3px;
+        }
+
+        .security-badge {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 8px;
+
+            margin-bottom: 25px;
+
+            padding: 10px;
+
+            color: #ff5575;
+
+            background:
+                rgba(255, 0, 60, .06);
+
+            border: 1px solid
+                rgba(255, 0, 60, .15);
+
+            border-radius: 8px;
+
+            font-size: 11px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #aaa;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+
+            left: 14px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color: #666;
+        }
+
+        .form-group input {
+            width: 100%;
+            height: 50px;
+
+            padding:
+                0 14px 0 42px;
+
+            color: #fff;
+
+            background: #060606;
+
+            border: 1px solid
+                rgba(255,255,255,.1);
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: .25s;
+        }
+
+        .form-group input:focus {
+            border-color: #ff003c;
+
+            box-shadow:
+                0 0 15px
+                rgba(255,0,60,.15);
+        }
+
+        .login-button {
+            width: 100%;
+            height: 50px;
+
+            margin-top: 8px;
+
+            border: 0;
+            border-radius: 8px;
+
+            background: #ff003c;
+
+            color: #fff;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 18px
+                rgba(255,0,60,.35);
+
+            transition: .25s;
+        }
+
+        .login-button:hover {
+            background: #ff174f;
+
+            box-shadow:
+                0 0 30px
+                rgba(255,0,60,.65);
+        }
+
+        .login-button:disabled {
+            opacity: .6;
+            cursor: wait;
+        }
+
+        #loginMessage {
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+            font-size: 12px;
+        }
+
+        #loginMessage.error {
+            display: block;
+
+            color: #ff6b86;
+
+            background:
+                rgba(255,0,60,.08);
+
+            border: 1px solid
+                rgba(255,0,60,.2);
+        }
+
+        #loginMessage.success {
+            display: block;
+
+            color: #55df91;
+
+            background:
+                rgba(0,200,100,.07);
+
+            border: 1px solid
+                rgba(0,200,100,.2);
+        }
+
+        .back-home {
+            display: block;
+
+            margin-top: 22px;
+
+            color: #666;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            font-size: 12px;
+        }
+
+        .back-home:hover {
+            color: #ff003c;
+        }
+
+        .footer-note {
+            margin-top: 25px;
+
+            color: #444;
+
+            text-align: center;
+
+            font-size: 10px;
+        }
+
+    </style>
+
 </head>
 
-<body class="auth-page">
 
-    <a href="index.html" class="auth-logo">
-        <span>FILM</span>KEYFİ
-    </a>
+<body>
 
-    <main class="auth-container">
 
-        <div class="auth-card">
+    <main class="admin-login">
 
-            <div class="auth-icon">
-                🎬
+        <section class="login-card">
+
+
+            <div class="logo">
+
+                <h1>
+                    <span>FILM</span>KEYFİ
+                </h1>
+
+                <p>
+                    ADMIN PANEL
+                </p>
+
             </div>
 
-            <h1>Hoş Geldin</h1>
 
-            <p class="auth-subtitle">
-                FilmKeyfi hesabına giriş yap
-            </p>
+            <div class="security-badge">
+
+                🔐
+
+                <span>
+                    Güvenli yönetici girişi
+                </span>
+
+            </div>
 
 
-            <form id="loginForm">
+            <form id="adminLoginForm">
 
-                <div class="input-group">
 
-                    <label for="loginEmail">
-                        E-posta
+                <!-- E-POSTA -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Admin E-posta
                     </label>
 
-                    <input
-                        type="email"
-                        id="loginEmail"
-                        placeholder="ornek@email.com"
-                        autocomplete="email"
-                        required
-                    >
+                    <div class="input-wrapper">
 
-                </div>
-
-
-                <div class="input-group">
-
-                    <label for="loginPassword">
-                        Şifre
-                    </label>
-
-                    <div class="password-box">
+                        <span class="input-icon">
+                            ✉
+                        </span>
 
                         <input
-                            type="password"
-                            id="loginPassword"
-                            placeholder="Şifrenizi girin"
-                            autocomplete="current-password"
+                            type="email"
+                            id="email"
+                            value="alitor741001@gmail.com"
+                            autocomplete="username"
                             required
                         >
-
-                        <button
-                            type="button"
-                            class="show-password"
-                            data-target="loginPassword"
-                        >
-                            ◉
-                        </button>
 
                     </div>
 
                 </div>
 
 
-                <div class="auth-options">
+                <!-- ŞİFRE -->
 
-                    <label class="remember">
+                <div class="form-group">
 
-                        <input
-                            type="checkbox"
-                            id="rememberMe"
-                        >
-
-                        <span>Beni hatırla</span>
-
+                    <label for="password">
+                        Şifre
                     </label>
 
-                    <a href="#" id="forgotPassword">
-                        Şifremi unuttum
-                    </a>
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔑
+                        </span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            autocomplete="current-password"
+                            placeholder="Şifrenizi girin"
+                            required
+                        >
+
+                    </div>
 
                 </div>
 
 
                 <button
                     type="submit"
-                    class="auth-submit"
+                    class="login-button"
                     id="loginButton"
                 >
                     Giriş Yap
                 </button>
 
+
                 <div
-                    class="auth-message"
                     id="loginMessage"
                 ></div>
+
 
             </form>
 
 
-            <div class="auth-divider">
-                <span>veya</span>
+            <a
+                href="index.html"
+                class="back-home"
+            >
+                ← Ana sayfaya dön
+            </a>
+
+
+            <div class="footer-note">
+                FilmKeyfi Yönetim Sistemi
             </div>
 
 
-            <div class="social-login">
-
-                <button
-                    type="button"
-                    class="social-button"
-                    id="googleLogin"
-                >
-                    <span>G</span>
-                    Google ile devam et
-                </button>
-
-            </div>
-
-
-            <p class="auth-bottom">
-
-                Hesabın yok mu?
-
-                <a href="register.html">
-                    Ücretsiz üye ol
-                </a>
-
-            </p>
-
-        </div>
+        </section>
 
     </main>
 
 
-    <script src="js/auth.js"></script>
+    <script>
+
+        const form =
+            document.getElementById(
+                "adminLoginForm"
+            );
+
+        const message =
+            document.getElementById(
+                "loginMessage"
+            );
+
+        const button =
+            document.getElementById(
+                "loginButton"
+            );
+
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                message.className =
+                    "error";
+
+                message.textContent =
+                    "Güvenli admin doğrulaması henüz backend'e bağlanmadı.";
+
+            }
+        );
+
+    </script>
+
 
 </body>
+
 </html>
