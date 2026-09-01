@@ -780,7 +780,120 @@
             }
         );
 
-    </script>
+    <script>
+
+    /*
+        Geçici oturum kontrolü.
+
+        Gerçek güvenli doğrulama backend
+        bağlandığında bunun yerini sunucu
+        doğrulaması alacak.
+    */
+
+    const adminSession =
+        sessionStorage.getItem(
+            "filmkeyfi_admin"
+        );
+
+
+    if (adminSession !== "true") {
+
+        window.location.href =
+            "login.html";
+
+    }
+
+
+    /*
+        ÇIKIŞ
+    */
+
+    function adminLogout() {
+
+        sessionStorage.removeItem(
+            "filmkeyfi_admin"
+        );
+
+        window.location.href =
+            "login.html";
+
+    }
+<script>
+
+const movieForm = document.getElementById("movieForm");
+const message = document.getElementById("adminMessage");
+
+movieForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const movie = {
+
+        id: Date.now(),
+
+        title:
+            document.getElementById("movieName").value.trim(),
+
+        poster:
+            document.getElementById("posterUrl").value.trim(),
+
+        video:
+            document.getElementById("videoUrl").value.trim(),
+
+        year:
+            document.getElementById("movieYear").value,
+
+        runtime:
+            document.getElementById("movieRuntime").value,
+
+        genre:
+            document.getElementById("movieGenre").value,
+
+        rating:
+            document.getElementById("movieRating").value,
+
+        description:
+            document
+                .getElementById("movieDescription")
+                .value
+                .trim()
+
+    };
+
+
+    /*
+       Tarayıcıda geçici olarak sakla.
+       Backend geldiğinde bunu API'ye
+       göndereceğiz.
+    */
+
+    const movies =
+        JSON.parse(
+            localStorage.getItem("filmkeyfi_movies") || "[]"
+        );
+
+
+    movies.push(movie);
+
+
+    localStorage.setItem(
+        "filmkeyfi_movies",
+        JSON.stringify(movies)
+    );
+
+
+    message.className = "success";
+
+    message.textContent =
+        "✓ Film başarıyla eklendi.";
+
+
+    movieForm.reset();
+
+});
+
+</script>
+
 
 
 </body>
